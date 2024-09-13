@@ -1,0 +1,36 @@
+public class Leader_day5 {
+
+    public static void findLeader(int[] arr) {
+        // If the array is empty, there are no leaders
+        if (arr == null || arr.length == 0) {
+            System.out.println("No leaders found.");
+            return;
+        }
+        
+        // List to store leaders
+        List<Integer> leaders = new ArrayList<>();
+        
+        // Initialize the maximum element from the rightmost end
+        int maxFromRight = arr[arr.length - 1];
+        leaders.add(maxFromRight); // The rightmost element is always a leader
+
+        // Traverse the array from the second last element to the beginning
+        for (int i = arr.length - 2; i >= 0; i--) {
+            // If the current element is greater than maxFromRight, it's a leader
+            if (arr[i] > maxFromRight) {
+                maxFromRight = arr[i];
+                leaders.add(maxFromRight);
+            }
+        }
+        
+        // Print leaders in the order they appear in the array
+        Collections.reverse(leaders);
+        System.out.println("Leaders in the array are: " + leaders);
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {16, 17, 4, 3, 5, 2};
+        findLeader(arr);
+    }
+}
+
